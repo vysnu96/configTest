@@ -16,9 +16,9 @@ jobs:
 workflows:
   version: 2
   say-hello-workflow:
-    # when:
-    #   or:
-    #     - << pipeline.parameters.first >>
+    when:
+      or:
+        - << pipeline.parameters.first >>
     jobs:
       - sayhello:
           filters:
