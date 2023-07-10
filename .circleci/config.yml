@@ -23,4 +23,5 @@ workflows:
       - sayhello:
           filters:
             branches:
-              ignore: /.*/
+              only:
+                - main
