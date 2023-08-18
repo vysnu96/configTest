@@ -24,8 +24,4 @@ workflows:
       or:
         - << pipeline.parameters.first >>
     jobs:
-      - sayhello:
-          filters:
-            branches:
-              only:
-                - main
+      - sayhello
