@@ -13,6 +13,7 @@ jobs:
       image: ubuntu-2204:2023.07.2
     resource_class: medium
     steps:
+      - run: sudo apt update && sudo apt install snapd && sudo snap install kubelogin
       - azure-cli/install
       - azure-cli/login-with-service-principal
       - azure-aks/update-kubeconfig-with-credentials:
