@@ -6,6 +6,7 @@ parameters:
 orbs:
   azure-aks: circleci/azure-aks@0.3.0
   azure-cli: circleci/azure-cli@1.2.2
+  helm: circleci/helm@2.0.1
 jobs:
   aks:
     machine:
@@ -20,6 +21,7 @@ jobs:
           perform-login: true
           resource-group: aks-new
       - run: kubectl get services
+      - helm/install-helm-client
       - run: helm install my-release oci://registry-1.docker.io/bitnamicharts/nginx
 
 workflows:
