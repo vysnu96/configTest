@@ -1,27 +1,28 @@
 version: 2.1
 parameters:
   first:
-    type: string
-    default: 1.0.1
+    type: boolean
+    default: false
+orbs:
+  azure-aks: circleci/azure-aks@0.3.0
+  azure-cli: circleci/azure-cli@1.2.2
 jobs:
-  sayhello:
-    docker:
-      - image: cimg/base:stable
+  aks:
+    machine:
+      image: ubuntu-2204:2023.07.2
+    resource_class: medium
     steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: |
-            if [ << pipeline.parameters.first >> == "1.0.*" ]; then
-                echo "Hello, World!"
-                echo << pipeline.parameters.first >>
-            fi
+      - azure-cli/install
+      - azure-cli/login-with-service-principal
+      - azure-aks/update-kubeconfig-with-credentials:
+          cluster-name: test
+          install-kubectl: true
+          perform-login: true
+          resource-group: aks-new
+      - run: kubectl get services
 
 workflows:
-  version: 2
-  say-hello-workflow:
-    when:
-      or:
-        - << pipeline.parameters.first >>
+  workflow:
+    when: << pipeline.parameters.first >>
     jobs:
-      - sayhello
+      - aks
