@@ -23,7 +23,8 @@ jobs:
           resource-group: aks-new
       # - run: az aks get-credentials --format azure
       - run: az aks get-credentials --name test --overwrite-existing --resource-group aks-new --format azure
-      - run: sudo chmod 777 /home/circleci/.kube/config && ls -l /home/circleci/.kube/config
+      - run: sudo chown $USER /home/circleci/.kube/config
+      - run: sudo chmod 0777 /home/circleci/.kube/config && ls -l /home/circleci/.kube/config
       # - run: export KUBECONFIG="~/.kube/config"
       - run: sudo kubelogin convert-kubeconfig --kubeconfig /home/circleci/.kube/config -l azurecli
       - run: kubectl get services
