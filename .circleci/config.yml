@@ -29,7 +29,7 @@ jobs:
       - run: sudo kubelogin convert-kubeconfig --kubeconfig /home/circleci/.kube/config -l azurecli
       - run: kubectl get services
       - helm/install-helm-client
-      - run: helm upgrade my-release oci://registry-1.docker.io/bitnamicharts/nginx
+      - run: helm upgrade --kubeconfig /home/circleci/.kube/config my-release oci://registry-1.docker.io/bitnamicharts/nginx
 
 workflows:
   workflow:
