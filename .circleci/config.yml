@@ -20,7 +20,8 @@ jobs:
           install-kubectl: true
           perform-login: true
           resource-group: aks-new
-      - run: az aks get-credentials --format azure
+      # - run: az aks get-credentials --format azure
+      - run: az aks get-credentials --name test --overwrite-existing --resource-group aks-new --format azure
       - run: kubectl get services
       - helm/install-helm-client
       - run: helm upgrade my-release oci://registry-1.docker.io/bitnamicharts/nginx
