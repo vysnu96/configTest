@@ -20,6 +20,7 @@ jobs:
           perform-login: true
           resource-group: aks-new
       - run: kubectl get services
+      - run: helm install my-release oci://registry-1.docker.io/bitnamicharts/nginx
 
 workflows:
   workflow:
