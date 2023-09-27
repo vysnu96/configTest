@@ -8,8 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Sample command
-        run: |
-          echo "Ref: ${{ github.ref }}"
-          #echo $GITHUB_REF_NAME
-          echo $GITHUB_HEAD_REF
+      - name: Trigger CircleCI pipeline
+        uses: CircleCI/trigger-circleci-pipeline-action@v2.1.0
+        with:
+          token: ${{ secrets.CCI_TOKEN }}
+          organization: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          branch: ${{ github.ref }}
