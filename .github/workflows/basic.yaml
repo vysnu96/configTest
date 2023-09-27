@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Sample command
-        run: echo "Hello World!"
+        run: echo "Ref: ${{ github.ref }}"
