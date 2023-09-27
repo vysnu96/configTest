@@ -16,4 +16,6 @@ workflows:
   workflow-one:
     jobs:
       - aks
-
+  workflow-two:
+    jobs:
+      - aks
