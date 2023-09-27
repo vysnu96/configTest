@@ -11,4 +11,4 @@ jobs:
       - name: Sample command
         run: |
           echo "Ref: ${{ github.ref }}"
-          echo $GITHUB_REF_NAME
+          echo $GITHUB_REF
