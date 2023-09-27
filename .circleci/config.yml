@@ -11,7 +11,7 @@ jobs:
       image: ubuntu-2204:2023.07.2
     resource_class: medium
     steps:
-      - run: echo "Hello World!"
+      - run: git checkout b1
 workflows:
   workflow-one:
     jobs:
