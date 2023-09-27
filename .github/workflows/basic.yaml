@@ -1,0 +1,12 @@
+on:
+  pull_request:
+    branches:
+      - 'master'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Sample command
+        run: echo "Hello World!"
