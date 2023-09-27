@@ -1,38 +1,19 @@
 version: 2.1
-parameters:
-  first:
-    type: boolean
-    default: false
-orbs:
-  azure-aks: circleci/azure-aks@0.3.0
-  azure-cli: circleci/azure-cli@1.2.2
-  helm: circleci/helm@2.0.1
+
+on:
+  pull_request:
+    branches:
+      - main    
+
 jobs:
   aks:
     machine:
       image: ubuntu-2204:2023.07.2
     resource_class: medium
     steps:
-      - run: sudo apt update && sudo apt install snapd && sudo snap install kubelogin
-      - azure-cli/install
-      - azure-cli/login-with-service-principal
-      - azure-aks/update-kubeconfig-with-credentials:
-          cluster-name: test
-          install-kubectl: true
-          perform-login: true
-          resource-group: aks-new
-      # - run: az aks get-credentials --format azure
-      - run: az aks get-credentials --name test --overwrite-existing --resource-group aks-new --format azure
-      - run: sudo chown $USER /home/circleci/.kube/config
-      - run: sudo chmod 0777 /home/circleci/.kube/config && ls -l /home/circleci/.kube/config
-      # - run: export KUBECONFIG="~/.kube/config"
-      - run: sudo kubelogin convert-kubeconfig --kubeconfig /home/circleci/.kube/config -l azurecli
-      - run: kubectl get services
-      - helm/install-helm-client
-      - run: helm upgrade --kubeconfig /home/circleci/.kube/config my-release oci://registry-1.docker.io/bitnamicharts/nginx
-
+      - run: echo "Hello World!"
 workflows:
-  workflow:
-    when: << pipeline.parameters.first >>
+  workflow-one:
     jobs:
       - aks
+
