@@ -19,16 +19,8 @@ workflows:
   workflow-one:
     when: << pipeline.parameters.param1 >>
     jobs:
-      - aks:
-          filters:
-            branches:
-              only:
-                - main
+      - aks
   workflow-two:
     when: << pipeline.parameters.param2 >>
     jobs:
-      - aks:
-          filters:
-            branches:
-              only:
-                - main
+      - aks
