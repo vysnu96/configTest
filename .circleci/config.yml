@@ -1,9 +1,12 @@
 version: 2.1
 
-on:
-  pull_request:
-    branches:
-      - main    
+parameters:
+  param1:
+    type: boolean
+    default: false
+  param2:
+    type: boolean
+    default: false
 
 jobs:
   aks:
@@ -14,8 +17,18 @@ jobs:
       - run: ssh-keyscan github.com >> ~/.ssh/known_hosts && git clone -b b1 git@github.com:vysnu96/configTest.git
 workflows:
   workflow-one:
+    when: << pipeline.parameters.param1 >>
     jobs:
-      - aks
+      - aks:
+          filters:
+            branches:
+              only:
+                - main
   workflow-two:
+    when: << pipeline.parameters.param2 >>
     jobs:
-      - aks
+      - aks:
+          filters:
+            branches:
+              only:
+                - main
