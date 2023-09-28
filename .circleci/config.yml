@@ -15,7 +15,7 @@ jobs:
       image: ubuntu-2204:2023.07.2
     resource_class: medium
     steps:
-      - run: ssh-keyscan github.com >> ~/.ssh/known_hosts && git clone -b b1 git@github.com:vysnu96/configTest.git
+      - run: git clone -b main git@github.com:vysnu96/configTest.git && ls -ltr
 workflows:
   workflow-one:
     when: << pipeline.parameters.param1 >>
