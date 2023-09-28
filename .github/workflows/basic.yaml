@@ -9,9 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CircleCI pipeline
-        uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
-        with:
-          token: ${{ secrets.CCI_TOKEN }}
-          organization: ${{ github.repository_owner }}
-          repo: ${{ github.repository }}
-          branch: $GITHUB_HEAD_REF
+        run: |
+          curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d {\"parameters\":{\"param1\":true, "branchName":"$GITHUB_HEAD_REF"}}
