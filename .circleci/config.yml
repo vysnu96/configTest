@@ -12,10 +12,10 @@ parameters:
 jobs:
   aks:
     machine:
-      image: ubuntu-2204:2023.07.2
+      image: ubuntu-2204:current
     resource_class: medium
     steps:
-      - run: sudo apt update && apt install tree
+      - run: sudo apt update && sudo apt install tree
       - run: git clone -b main git@github.com:vysnu96/configTest.git && tree configTest
 workflows:
   workflow-one:
