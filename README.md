@@ -1,1 +1,2 @@
 # configTest
+new line
