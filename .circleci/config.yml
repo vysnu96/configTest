@@ -8,6 +8,9 @@ parameters:
   param2:
     type: boolean
     default: false
+  branchName:
+    type: string
+    default: main
 
 jobs:
   aks:
@@ -15,8 +18,7 @@ jobs:
       image: ubuntu-2204:current
     resource_class: medium
     steps:
-      - run: sudo apt update && sudo apt install tree
-      - run: git clone -b main git@github.com:vysnu96/configTest.git && tree configTest
+      - run: echo "<< pipeline.parameters.branchName >>"
 workflows:
   workflow-one:
     when: << pipeline.parameters.param1 >>
