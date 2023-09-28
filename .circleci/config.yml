@@ -1,5 +1,7 @@
 version: 2.1
 
+orbs:
+  slack: circleci/slack@4.4.4
 
 parameters:
   param1:
@@ -19,6 +21,11 @@ jobs:
     resource_class: medium
     steps:
       - run: echo "<< pipeline.parameters.branchName >>"
+      - slack/notify:
+          channel: test-report 
+          custom: This is the report from build 
+          event: pass 
+          ignore_errors: true
 workflows:
   workflow-one:
     when: << pipeline.parameters.param1 >>
