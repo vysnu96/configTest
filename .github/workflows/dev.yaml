@@ -9,7 +9,7 @@ on:
 
 jobs:
   dev:
-    if: github.event_name == 'push' && contains(github.event.head_commit.modified, 'folder1/*')
+    if: ${{ contains(github.event.head_commit.modified, 'folder1/*') }}
     runs-on: ubuntu-latest
     steps:
       - name: Dev job
@@ -17,7 +17,7 @@ jobs:
          curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d "{\"branch\":\"dev\",\"parameters\":{\"name\":\"Folder1 changed in $GITHUB_HEAD_REF\",\"param1\":true}}"
 
   qa:
-    if: github.event_name == 'push' && contains(github.event.head_commit.modified, 'folder2/*')
+    if: ${{ contains(github.event.head_commit.modified, 'folder2/*') }}
     runs-on: ubuntu-latest
     steps:
       - name: Qa job
