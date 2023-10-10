@@ -1,7 +1,7 @@
 on:
   push:
     branches: 
-      - 'dev'
+      - dev
     paths: 
       - 'folder1/*'
       - 'folder2/*'
