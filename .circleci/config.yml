@@ -10,9 +10,6 @@ parameters:
   param2:
     type: boolean
     default: false
-  branchName:
-    type: string
-    default: main
 
 jobs:
   aks:
@@ -20,12 +17,7 @@ jobs:
       image: ubuntu-2204:current
     resource_class: medium
     steps:
-      - run: echo "<< pipeline.parameters.branchName >>"
-      - slack/notify:
-          channel: test-report 
-          custom: This is the report from build 
-          event: pass 
-          ignore_errors: true
+      - run: echo "Hi"
 workflows:
   workflow-one:
     when: << pipeline.parameters.param1 >>
