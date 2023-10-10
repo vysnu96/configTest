@@ -2,21 +2,24 @@ on:
   push:
     branches: 
       - dev
+      - qa
     paths: 
       - 'folder1/**'
       - 'folder2/**'
 
 jobs:
   dev:
+    if: github.event_name == 'push' && github.event_name != 'pull_request' && contains(github.event.head_commit.modified, 'folder1/')
     runs-on: ubuntu-latest
     steps:
       - name: Dev job
         run: |
-         curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d "{\"branch\":\"dev\",\"parameters\":{\"name\":\"Hi from Dev\",\"param1\":true}}"
+         curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d "{\"branch\":\"dev\",\"parameters\":{\"name\":\"Folder1 changed in $GITHUB_HEAD_REF\",\"param1\":true}}"
 
   qa:
+    if: github.event_name == 'push' && github.event_name != 'pull_request' && contains(github.event.head_commit.modified, 'folder2/')
     runs-on: ubuntu-latest
     steps:
       - name: Qa job
         run: |
-         curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d "{\"branch\":\"qa\",\"parameters\":{\"name\":\"Hi from Qa\",\"param2\":true}}"
+         curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d "{\"branch\":\"qa\",\"parameters\":{\"name\":\"Folder2 changed in $GITHUB_HEAD_REF\",\"param2\":true}}"
