@@ -3,8 +3,8 @@ on:
     branches: 
       - dev
     paths: 
-      - 'folder1/*'
-      - 'folder2/*'
+      - 'folder1/**'
+      - 'folder2/**'
 
 jobs:
   build:
