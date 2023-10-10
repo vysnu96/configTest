@@ -17,7 +17,7 @@ jobs:
       image: ubuntu-2204:current
     resource_class: medium
     steps:
-      - run: echo << pipeline.parameters.test >>
+      - run: echo << pipeline.parameters.name >>
 workflows:
   workflow-one:
     when: << pipeline.parameters.param1 >>
