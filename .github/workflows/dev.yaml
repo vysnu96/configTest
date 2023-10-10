@@ -2,7 +2,6 @@ on:
   push:
     branches: 
       - dev
-      - qa
     paths: 
       - 'folder1/**'
       - 'folder2/**'
