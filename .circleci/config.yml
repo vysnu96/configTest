@@ -20,10 +20,14 @@ jobs:
       - run: echo << pipeline.parameters.name >>
 workflows:
   workflow-one:
-    when: << pipeline.parameters.param1 >>
+    when: 
+      - << pipeline.parameters.param1 >>
+      - << pipeline.parameters.name >>
     jobs:
       - aks
   workflow-two:
-    when: << pipeline.parameters.param2 >>
+    when: 
+      - << pipeline.parameters.param2 >>
+      - << pipeline.parameters.name >>
     jobs:
       - aks
