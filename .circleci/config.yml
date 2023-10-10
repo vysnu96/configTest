@@ -21,13 +21,11 @@ jobs:
 workflows:
   workflow-one:
     when: 
-      - << pipeline.parameters.param1 >>
-      - << pipeline.parameters.name >>
+      or: [ << pipeline.parameters.param1 >>, << pipeline.parameters.name >> ]
     jobs:
       - aks
   workflow-two:
     when: 
-      - << pipeline.parameters.param2 >>
-      - << pipeline.parameters.name >>
+      or: [ << pipeline.parameters.param2 >>, << pipeline.parameters.name >> ]
     jobs:
       - aks
