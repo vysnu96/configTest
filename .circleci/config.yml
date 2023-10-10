@@ -7,6 +7,9 @@ parameters:
   param2:
     type: boolean
     default: false
+  name:
+    type: string
+    default: test
 
 jobs:
   aks:
@@ -14,7 +17,7 @@ jobs:
       image: ubuntu-2204:current
     resource_class: medium
     steps:
-      - run: echo "Hi"
+      - run: echo << pipeline.parameters.test >>
 workflows:
   workflow-one:
     when: << pipeline.parameters.param1 >>
