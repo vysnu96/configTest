@@ -1,7 +1,10 @@
 on:
   push:
-    branches: ['dev']
-    paths: ['folder1/**', 'folder2/**']
+    branches: 
+      - dev
+    paths: 
+      - 'folder1/*'
+      - 'folder2/*'
 
 jobs:
   build:
