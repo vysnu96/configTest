@@ -1,0 +1,15 @@
+on:
+  push:
+    branches: 
+      - dev
+      - qa
+    paths:
+      - 'folder2/**'
+  
+jobs:
+  dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dev job
+        run: |
+          curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d "{\"branch\":\"dev\",\"parameters\":{\"name\":\"Folder1 changed in ${{ GITHUB_HEAD_REF }}\",\"param2\":true}}"
