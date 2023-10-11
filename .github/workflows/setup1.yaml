@@ -12,5 +12,5 @@ jobs:
     steps:
       - name: Dev job
         run: |
-          branch=`echo ${GITHUB_REF##*/})\`
+          branch=`echo ${GITHUB_REF##*/}`
           curl --request POST https://circleci.com/api/v2/project/gh/vysnu96/configTest/pipeline --header "Circle-Token: ${{ secrets.CCI_TOKEN }}" --header "content-type: application/json" -d "{\"branch\":\"dev\",\"parameters\":{\"name\":\"$branch\",\"param1\":true}}"
