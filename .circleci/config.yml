@@ -1,27 +1,10 @@
 version: 2.1
-
-orbs:
-  slack: circleci/slack@4.4.4
-
 parameters:
-  param1:
-    type: boolean
-    default: false
-  param2:
-    type: boolean
-    default: false
   reports:
     type: boolean
     default: false
 
 jobs:
-  aks:
-    machine:
-      image: ubuntu-2204:current
-    resource_class: medium
-    steps:
-      - run: echo "Hi"
-      
   buildone:
     machine:
       image: ubuntu-2204:current
@@ -56,14 +39,4 @@ workflows:
       - final:
           requires:
             - buildtwo
-      - buildtwo:
-          requires:
             - buildone
-  workflow-one:
-    when: << pipeline.parameters.param1 >>
-    jobs:
-      - aks
-  workflow-two:
-    when: << pipeline.parameters.param2 >>
-    jobs:
-      - aks
