@@ -1,7 +1,7 @@
 on:
   push:
     branches: 
-      - main
+      - 'main'
     # paths: ['folder1/**', 'folder2/**']
   # pull_request:
   #   types:
