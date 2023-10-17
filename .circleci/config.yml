@@ -36,9 +36,10 @@ workflows:
   reportsend:
     when: << pipeline.parameters.reports >>
     jobs:
-      - buildone
-      - buildtwo
       - final:
           requires:
+            - buildtwo
+      - buildtwo:
+          requires:
             - buildone
-            - buildone
+      - buildone
