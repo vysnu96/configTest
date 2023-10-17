@@ -1,15 +1,17 @@
 on:
-  # push:
-  #   branches: ['dev']
-  #   paths: ['folder1/**', 'folder2/**']
-  pull_request:
-    types:
-      - opened
-    branches:
-      - main
+  push:
+    branches: ['main']
+    paths: ['folder1/**', 'folder2/**']
+  # pull_request:
+  #   types:
+  #     - opened
+  #   branches:
+  #     - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "PR number is ${{ github.event.number }}"
+      - run: |
+          prNum=${{ GITHUB_ACTOR }}
+          echo $prNum
