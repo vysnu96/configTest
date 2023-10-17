@@ -10,6 +10,9 @@ parameters:
   param2:
     type: boolean
     default: false
+  reports:
+    type: boolean
+    default: false
 
 jobs:
   aks:
@@ -18,7 +21,42 @@ jobs:
     resource_class: medium
     steps:
       - run: echo "Hi"
+      
+  one:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: medium
+    steps:
+      - run: echo "From job One" >> /tmp/file1.txt
+      - persist_to_workspace:
+          root: /tmp/
+    
+  two:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: medium
+    steps:
+      - run: echo "From job Two" >> /tmp/file2.txt
+      - persist_to_workspace:
+          root: /tmp/
+          
+  final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: medium
+    steps:
+      - attach_workspace:
+          at: /tmp/
+      - run: pwd && ls -ltr
+    
 workflows:
+  reports-total:
+    when: << pipeline.parameters.reports >>
+    jobs:
+      - final:
+        requires:
+          - one
+          - two
   workflow-one:
     when: << pipeline.parameters.param1 >>
     jobs:
