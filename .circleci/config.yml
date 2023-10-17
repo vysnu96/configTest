@@ -12,7 +12,9 @@ jobs:
     steps:
       - run: echo "From job One" >> /tmp/file1.txt
       - persist_to_workspace:
-          root: /tmp/   
+          root: /tmp/ 
+          paths: 
+            - file1.txt
   buildtwo:
     machine:
       image: ubuntu-2204:current
@@ -20,7 +22,9 @@ jobs:
     steps:
       - run: echo "From job Two" >> /tmp/file2.txt
       - persist_to_workspace:
-          root: /tmp/    
+          root: /tmp/ 
+          paths: 
+            - file2.txt
   final:
     machine:
       image: ubuntu-2204:current
