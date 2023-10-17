@@ -1,7 +1,7 @@
 on:
   push:
-    branches: 
-      - 'main'
+    branches:
+      - main
     # paths: ['folder1/**', 'folder2/**']
   # pull_request:
   #   types:
@@ -13,6 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Trigger CircleCI pipeline
+        run: |
           prNum=${{ GITHUB_ACTOR }}
           echo $prNum
