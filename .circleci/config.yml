@@ -54,9 +54,9 @@ workflows:
     when: << pipeline.parameters.reports >>
     jobs:
       - final:
-        requires:
-          - one
-          - two
+          requires:
+            - one
+            - two
   workflow-one:
     when: << pipeline.parameters.param1 >>
     jobs:
