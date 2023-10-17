@@ -22,7 +22,7 @@ jobs:
     steps:
       - run: echo "Hi"
       
-  one:
+  buildone:
     machine:
       image: ubuntu-2204:current
     resource_class: medium
@@ -31,7 +31,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/
     
-  two:
+  buildtwo:
     machine:
       image: ubuntu-2204:current
     resource_class: medium
@@ -55,8 +55,10 @@ workflows:
     jobs:
       - final:
           requires:
-            - one
-            - two
+            - buildtwo
+      - buildtwo:
+          requires:
+            - buildone
   workflow-one:
     when: << pipeline.parameters.param1 >>
     jobs:
