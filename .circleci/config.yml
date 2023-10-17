@@ -25,6 +25,9 @@ jobs:
     machine:
       image: ubuntu-2204:current
     resource_class: medium
+    requires:
+      - buildone
+      - buildtwo
     steps:
       - attach_workspace:
           at: /tmp/
@@ -34,10 +37,10 @@ workflows:
   reportsend:
     when: << pipeline.parameters.reports >>
     jobs:
-      - final:
-          requires:
-            - buildtwo
-      - buildtwo:
-          requires:
-            - buildone
-      - buildone
+      - final
+      #     requires:
+      #       - buildtwo
+      # - buildtwo:
+      #     requires:
+      #       - buildone
+      # - buildone
