@@ -32,7 +32,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/
-      - run: pwd && ls -ltr
+      - run: pwd && ls -ltr /tmp
     
 workflows:
   reportsend:
@@ -44,9 +44,3 @@ workflows:
           requires:
             - buildone
             - buildtwo
-      #     requires:
-      #       - buildtwo
-      # - buildtwo:
-      #     requires:
-      #       - buildone
-      # - buildone
