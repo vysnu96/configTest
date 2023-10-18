@@ -11,5 +11,5 @@ jobs:
     steps:
       - name: Trigger CircleCI pipeline
         run: |
-          branch=`echo ${{ github.base_ref }}`
+          branch=`echo ${{ github.event.pull_request.base.ref }}`
           echo $branch
