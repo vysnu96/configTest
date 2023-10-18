@@ -9,5 +9,5 @@ jobs:
     steps:
       - name: Trigger CircleCI pipeline
         run: |
-          prNum=${{ github.ref }}
-          echo $prNum
+          branch=`echo ${GITHUB_REF##*/}`
+          echo $branch
